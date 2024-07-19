@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Delete</title>
+    <style>
+        /* Add some basic styling to make the page look decent */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9; /* Add a light gray background */
+        }
+        h1 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 18px; /* Make the paragraph text larger */
+        }
+        form {
+            margin-top: 20px;
+            display: inline-block; /* Make the form inline-block to center it */
+        }
+        button[type="submit"] {
+            background-color: #e74c3c; /* Use a more vibrant red color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold; /* Make the delete button bold */
+        }
+        button[type="submit"]:hover {
+            background-color: #c0392b; /* Use a darker red color on hover */
+        }
+        a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        a:hover {
+            color: #23527c;
+        }
+        /* Add some animations to make the page more interactive */
+        button[type="submit"]:active {
+            background-color: #c0392b;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete "{{ item.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'item_list' %}" class="btn-cancel">Cancel</a>
+    <style>
+        /* Add some basic styling to the cancel button */
+        .btn-cancel {
+            background-color: #fff;
+            color: #337ab7;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-cancel:hover {
+            background-color: #f7f7f7;
+        }
+    </style>
+</body>
+</html>
