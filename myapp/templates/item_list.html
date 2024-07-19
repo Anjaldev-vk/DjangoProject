@@ -3,9 +3,66 @@
 <head>
     <title>Item List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <style>
         body {
-            background-color: #f9f9f9; /* Change the background color to a light gray */
+            background-color: #f0f0f0; /* Light gray background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Optional: Font family */
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+        .display-3 {
+            color: #333333; /* Dark gray for heading */
+            margin-bottom: 30px;
+        }
+        .card {
+            border: none;
+            background-color: #f9f9f9; /* Light gray for cards */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Lift card on hover */
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 5px;
+            cursor: pointer; /* Add a pointer cursor to indicate that the image is clickable */
+        }
+        .modal-dialog {
+            max-width: 80%;
+        }
+        .modal-content {
+            border-radius: 10px;
+        }
+        .btn-success {
+            background-color: #28a745; /* Green button */
+            border-color: #28a745; /* Green border */
+        }
+        .btn-success:hover {
+            background-color: #218838; /* Darker green on hover */
+            border-color: #218838; /* Darker green border on hover */
+        }
+        .btn-danger {
+            background-color: #dc3545; /* Red button */
+            border-color: #dc3545; /* Red border */
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* Darker red on hover */
+            border-color: #c82333; /* Darker red border on hover */
         }
     </style>
 </head>
@@ -15,20 +72,42 @@
         <div class="row">
             {% for item in items %}
                 <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="card-img-top img-fluid rounded-circle" width="100">
+                    <div class="card h-100 shadow-sm"> <!-- Added shadow-sm for a lighter shadow -->
+                        <div class="avatar" data-toggle="modal" data-target="#myModal-{{ item.pk }}">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-fluid rounded-circle">
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ item.name }} - {{ item.description }}</h5>
-                            <p class="card-text">
-                                <a href="{% url 'item_update' item.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <p class="card-text">Price: ${{ item.price }}</p> <!-- Displaying the price -->
+                            <div class="text-center">
+                                <a href="{% url 'item_update' item.pk %}" class="btn btn-sm btn-primary mr-2">Edit</a>
                                 <a href="{% url 'item_delete' item.pk %}" class="btn btn-sm btn-danger">Delete</a>
-                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal window for each item -->
+                <div class="modal fade" id="myModal-{{ item.pk }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-{{ item.pk }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel-{{ item.pk }}">{{ item.name }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-fluid">
+                                <p>{{ item.description }}</p>
+                                <p>Price: ${{ item.price }}</p> <!-- Displaying the price -->
+                            </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <a href="{% url 'item_create' %}" class="btn btn-lg btn-successgit config --global user.name "Your Name"">Add new item</a>
+        <a href="{% url 'item_create' %}" class="btn btn-lg btn-success">Add new item</a>
     </div>
 </body>
 </html>

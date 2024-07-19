@@ -3,6 +3,35 @@
 <head>
     <title>Item Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #d4e3fa; /* Light shade of blue */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Optional: Font family */
+        }
+        .container {
+            background-color: #ffffff; /* White container background */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            width: 100%;
+            max-width: 600px;
+        }
+        .container h1 {
+            margin-bottom: 30px;
+            color: #4285f4; /* Blue color for heading */
+        }
+        form {
+            margin-top: 20px;
+        }
+        .btn-success {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -13,5 +42,10 @@
             <button type="submit" class="btn btn-success">Save</button>
         </form>
     </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
